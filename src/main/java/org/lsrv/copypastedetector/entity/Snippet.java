@@ -33,7 +33,7 @@ public class Snippet {
     private String clientName;
 
     @Column(nullable = false, insertable = false, updatable = false)
-    private Instant createdAt;
+    private LocalDateTime createdAt;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)

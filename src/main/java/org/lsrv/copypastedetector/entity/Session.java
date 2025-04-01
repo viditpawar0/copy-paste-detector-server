@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -28,5 +29,5 @@ public class Session {
     private List<Snippet> snippets;
 
     @Column(nullable = false, updatable = false, insertable = false)
-    private Instant endsAt;
+    private LocalDateTime endsAt;
 }
