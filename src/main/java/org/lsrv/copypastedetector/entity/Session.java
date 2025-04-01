@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.Instant;
 import java.util.List;
 
 @Setter
@@ -26,4 +27,6 @@ public class Session {
     @OneToMany(mappedBy = "session")
     private List<Snippet> snippets;
 
+    @Column(nullable = false, updatable = false, insertable = false)
+    private Instant endsAt;
 }

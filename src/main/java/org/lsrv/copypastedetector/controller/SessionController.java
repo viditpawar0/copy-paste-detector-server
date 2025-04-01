@@ -34,6 +34,7 @@ public class SessionController {
 
     @GetMapping("/session/{id}")
     public ResponseEntity<Session> getSession(@PathVariable Long id) {
+        System.out.println(sessionService.getSession(id).getEndsAt());
         try {
             return new ResponseEntity<>(sessionService.getSession(id), HttpStatus.OK);
         } catch (EntityNotFoundException enfe) {
