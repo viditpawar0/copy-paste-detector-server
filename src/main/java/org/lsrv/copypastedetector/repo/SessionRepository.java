@@ -1,4 +1,7 @@
 package org.lsrv.copypastedetector.repo;
 
-public class SessionRepository {
+import org.lsrv.copypastedetector.entity.Session;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SessionRepository extends JpaRepository<Session, Long> {
 }
