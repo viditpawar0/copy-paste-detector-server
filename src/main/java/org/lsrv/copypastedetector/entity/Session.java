@@ -24,10 +24,9 @@ public class Session {
     @Column(nullable = false)
     private String name;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "session")
     private List<Snippet> snippets;
 
     @Column(nullable = false, updatable = false, insertable = false)
-    private LocalDateTime endsAt;
+    private Instant endsAt;
 }

@@ -1,9 +1,6 @@
 package org.lsrv.copypastedetector.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,10 +30,12 @@ public class Snippet {
     private String clientName;
 
     @Column(nullable = false, insertable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private Instant createdAt;
+
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @ManyToOne
     private Session session;
 
