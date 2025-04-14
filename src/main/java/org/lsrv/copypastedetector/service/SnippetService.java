@@ -1,6 +1,7 @@
 package org.lsrv.copypastedetector.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import org.lsrv.copypastedetector.entity.Snippet;
 import org.lsrv.copypastedetector.repo.SnippetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class SnippetService {
     private final SnippetRepository snippetRepository;
-
-    @Autowired
-    public SnippetService(SnippetRepository snippetRepository) {
-        this.snippetRepository = snippetRepository;
-    }
 
     public Snippet createSnippet(Snippet snippet) {
         if (snippet.getId() != null) {

@@ -10,7 +10,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -18,25 +17,23 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 @EntityListeners(AuditingEntityListener.class)
-public class Snippet {
+public class Warning {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Lob
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
-    private String content;
-
     @Column(nullable = false)
-    private SnippetType type;
+    private String text;
 
     @Column(nullable = false)
     private String clientName;
 
+    @Column(nullable = false)
+    private Severity severity;
+
     @CreatedDate
     @Column
     private Instant createdAt;
-
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
@@ -49,6 +46,5 @@ public class Snippet {
         this.session = new Session();
         this.session.setId(id);
     }
-
-    enum SnippetType { COPIED, PASTED }
+    enum Severity { HIGH, MEDIUM, LOW }
 }

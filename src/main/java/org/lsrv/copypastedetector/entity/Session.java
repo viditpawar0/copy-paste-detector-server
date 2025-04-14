@@ -27,6 +27,9 @@ public class Session {
     @OneToMany(mappedBy = "session")
     private List<Snippet> snippets;
 
-    @Column(nullable = false, updatable = false, insertable = false)
+    @OneToMany(mappedBy = "session")
+    private List<Warning> warnings;
+
+    @Column(nullable = false)
     private Instant endsAt;
 }

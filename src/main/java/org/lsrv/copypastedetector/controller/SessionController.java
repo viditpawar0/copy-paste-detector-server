@@ -1,6 +1,7 @@
 package org.lsrv.copypastedetector.controller;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.lsrv.copypastedetector.entity.Session;
 import org.lsrv.copypastedetector.service.SessionService;
@@ -14,14 +15,9 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
+@AllArgsConstructor
 public class SessionController {
-
     private final SessionService sessionService;
-
-    @Autowired
-    public SessionController(SessionService sessionService) {
-        this.sessionService = sessionService;
-    }
 
     @PostMapping("/session")
     public ResponseEntity<Session> createSession(@RequestBody Session session) {

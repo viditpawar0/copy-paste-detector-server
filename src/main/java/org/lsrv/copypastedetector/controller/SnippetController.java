@@ -1,6 +1,7 @@
 package org.lsrv.copypastedetector.controller;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import org.lsrv.copypastedetector.entity.Snippet;
 import org.lsrv.copypastedetector.service.SnippetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class SnippetController {
     SnippetService snippetService;
-
-    @Autowired
-    public SnippetController(SnippetService snippetService) {
-        this.snippetService = snippetService;
-    }
 
     @PostMapping("/snippet")
     public ResponseEntity<Snippet> createSnippet(@RequestBody Snippet snippet) {

@@ -2,6 +2,7 @@ package org.lsrv.copypastedetector.service;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import org.lsrv.copypastedetector.entity.Session;
 import org.lsrv.copypastedetector.repo.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class SessionService {
     private final SessionRepository sessionRepository;
-
-    @Autowired
-    public SessionService(SessionRepository sessionRepository) {
-        this.sessionRepository = sessionRepository;
-    }
 
     public Session createSession(Session session) {
         if (session.getId() != null) {
