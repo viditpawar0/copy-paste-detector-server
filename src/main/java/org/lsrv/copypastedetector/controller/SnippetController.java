@@ -19,7 +19,6 @@ public class SnippetController {
     private final SnippetService snippetService;
     private final SimpMessagingTemplate simpMessagingTemplate;
 
-    @SendTo("/topic/snippets")
     @PostMapping("/snippet")
     public ResponseEntity<Snippet> createSnippet(@RequestBody Snippet snippet) {
         try {

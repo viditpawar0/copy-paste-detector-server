@@ -7,6 +7,7 @@ import org.lsrv.copypastedetector.service.WarningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 public class WarningController {
     private final WarningService warningService;
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
     @PostMapping("/warning")
     public ResponseEntity<Warning> createWarning(@RequestBody Warning warning) {
         try {
-            return new ResponseEntity<>(warningService.createWarning(warning), HttpStatus.CREATED);
+            ResponseEntity<Warning> newWarningResponseEntity = new ResponseEntity<>(warningService.createWarning(warning), HttpStatus.CREATED);
+            simpMessagingTemplate.convertAndSend("/topic/warnings", newWarningResponseEntity);
+            return newWarningResponseEntity;
         } catch (IllegalArgumentException iae) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
